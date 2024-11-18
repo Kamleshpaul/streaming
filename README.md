@@ -2,6 +2,9 @@
 
 A modern video streaming platform built with Next.js, BullMQ, and DrizzleORM.
 
+## Screenshot
+![Streaming Platform Screenshot](image.png)
+
 ## Features
 
 - Video upload and processing
