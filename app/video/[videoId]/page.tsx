@@ -1,6 +1,6 @@
 import VideoPlayer from '@/app/components/VideoJS';
 import db, { videosTable } from '@/server/db';
-import { eq, param } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { notFound } from 'next/navigation';
 
 // const VideoPlayer = dynamic(() => import('@/app/components/VideoJS'), { ssr: false });

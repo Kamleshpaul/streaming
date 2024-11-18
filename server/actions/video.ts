@@ -53,6 +53,7 @@ export const retryProcessVideoAction = async (videoId: number) => {
   await db.update(videosTable).set({
     status: 'processing',
   })
+    .where(eq(videosTable.id, videoId));
 
   revalidatePath('/');
 
