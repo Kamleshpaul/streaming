@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Streaming Platform
 
-## Getting Started
+A modern video streaming platform built with Next.js, BullMQ, and DrizzleORM.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Video upload and processing
+- Adaptive streaming with video.js
+- Queue-based video processing
+- Modern UI with Tailwind CSS and Mantine
+- SQLite database with DrizzleORM
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Prerequisites
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Node.js (Latest LTS version)
+- PNPM package manager
+- Redis server (for BullMQ)
+- FFmpeg (for video processing)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup Instructions
 
-## Learn More
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Kamleshpaul/streaming.git
+   cd streaming
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Environment Setup**
+   Create a `.env` file in the root directory with the following variables:
+   ```env
+   DATABASE_URL=file:streaming.db
+   REDIS_HOST=localhost
+   REDIS_PORT=6379
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Database Setup**
+   ```bash
+   # Generate database migrations
+   pnpm db:generate
 
-## Deploy on Vercel
+   # Apply migrations
+   pnpm db:migrate
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Start Development Server**
+   ```bash
+   # This will start both Next.js and the queue processor
+   pnpm dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   The application will be available at `http://localhost:3000`
+
+## Available Scripts
+
+- `pnpm dev` - Start development server with queue processor
+- `pnpm build` - Build the application
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+- `pnpm queue:run` - Run queue processor separately
+- `pnpm db:generate` - Generate database migrations
+- `pnpm db:migrate` - Apply database migrations
+- `pnpm db:studio` - Open Drizzle Studio for database management
+
+## Project Structure
+
+- `/app` - Next.js application routes and pages
+- `/components` - Reusable React components
+- `/drizzle` - Database schema and migrations
+- `/lib` - Utility functions and shared code
+- `/public` - Static assets
+- `/server` - Server-side code and queue processors
+
+## Tech Stack
+
+- **Frontend**: Next.js, React, Tailwind CSS, Mantine UI
+- **Backend**: Node.js, BullMQ
+- **Database**: SQLite with DrizzleORM
+- **Video Processing**: FFmpeg
+- **Queue System**: BullMQ with Redis
+
+## Development
+
+The project uses TypeScript for type safety and follows modern React patterns. The video processing is handled through a queue system to ensure reliable processing of uploaded videos.
+
+## License
+
+MIT
