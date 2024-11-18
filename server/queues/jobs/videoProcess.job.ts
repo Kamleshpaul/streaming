@@ -113,9 +113,7 @@ const processVideoStreams = async (videoId: number) => {
     const mpdPath = path.join(dashOutputDir, `manifest.mpd`);
 
     // Start building the command
-    ffmpegCommand
-      .input(originalPath)
-      
+    ffmpegCommand      
       // Add codecs
       .videoCodec('libx264')
       .audioCodec('aac');
@@ -123,8 +121,8 @@ const processVideoStreams = async (videoId: number) => {
     // Add stream mappings dynamically using the correct stream indexes
     FORMATS.forEach(() => {
       ffmpegCommand
-        .addOption('-map', `0:v:${videoStream.index}`)
-        .addOption('-map', `0:a:${audioStream.index}`);
+        .addOption('-map', `0:${videoStream.index}`) 
+        .addOption('-map', `0:${audioStream.index}`); 
     });
 
     // Add video quality settings dynamically
@@ -154,8 +152,6 @@ const processVideoStreams = async (videoId: number) => {
 
       // Output
       .output(mpdPath);
-
-    console.log(`FFmpeg command: ${ffmpegCommand._getArguments().join(' ')}`);
 
     await new Promise((resolve, reject) => {
       ffmpegCommand
