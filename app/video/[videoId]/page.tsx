@@ -3,11 +3,6 @@ import db, { videosTable } from '@/server/db';
 import { eq } from 'drizzle-orm';
 import { notFound } from 'next/navigation';
 
-// const VideoPlayer = dynamic(() => import('@/app/components/VideoJS'), { ssr: false });
-
-// export const dynamic = 'force-dynamic'
-
-
 export default async function Video({ params }: {
     params: {
         videoId: string
@@ -26,7 +21,7 @@ export default async function Video({ params }: {
 
     return (
         <>
-            <VideoPlayer autoPlay mpd={`/${mpd}`} />
+            <VideoPlayer  mpd={`/${mpd}`} />
         </>
     )
 }
