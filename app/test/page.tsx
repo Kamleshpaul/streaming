@@ -4,7 +4,7 @@ import React from 'react'
 import { setCookiesAction } from '@/server/actions/setCookies'
 import dynamic from 'next/dynamic';
 
-const VideoPlayer = dynamic(() => import('../components/VideoJS'), { ssr: false });
+const VideoPlayer = dynamic(() => import('../../components/VideoJS'), { ssr: false });
 
 function Test() {
 

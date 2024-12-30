@@ -1,11 +1,11 @@
-import db from '@/server/db';
-import { VideoUploader } from './components/VideoUploader';
-import VideoLists from './components/VideoLists';
+// import db from '@/server/db';
+import { VideoUploader } from '../components/VideoUploader';
+// import VideoLists from '../components/VideoLists';
 
 
 export default async function Home() {
 
-  const videos = await db.query.videosTable.findMany();
+  // const videos = await db.query.videosTable.findMany();
 
  
   return (
@@ -16,7 +16,7 @@ export default async function Home() {
         <VideoUploader />
       </div>
 
-      <VideoLists videos={videos}/>
+      {/* <VideoLists videos={videos}/> */}
     </div>
   );
 }
