@@ -1,12 +1,12 @@
-import VideoPlayer from '@/app/components/VideoJS';
+// import VideoPlayer from '@/app/components/VideoJS';
 import db, { videosTable } from '@/server/db';
 import { eq } from 'drizzle-orm';
 import { notFound } from 'next/navigation';
 
 export default async function Video({ params }: {
-    params: {
+    params: Promise<{
         videoId: string
-    }
+    }>
 }) {
     const { videoId } = await params;
 
@@ -21,7 +21,7 @@ export default async function Video({ params }: {
 
     return (
         <>
-            <VideoPlayer  mpd={`/${mpd}`} />
+            {/* <VideoPlayer  mpd={`/${mpd}`} /> */}
         </>
     )
 }
